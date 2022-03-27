@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav"
+    app:startDestination="@id/fragmentLogin">
+
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.teststupido.view.FragmentLogin"
+        android:label="FragmentLogin" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_responseFragment"
+            app:destination="@id/responseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/responseFragment"
+        android:name="com.example.teststupido.view.ResponseFragment"
+        android:label="ResponseFragment" />
+</navigation>
