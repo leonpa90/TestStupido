@@ -14,7 +14,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.teststupido.R
 import com.example.teststupido.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FragmentLogin:Fragment()
 {
     lateinit var bind:FragmentLoginBinding

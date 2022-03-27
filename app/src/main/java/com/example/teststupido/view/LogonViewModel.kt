@@ -6,14 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.teststupido.data.repository.Repository
 import com.example.teststupido.model.UserEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LogonViewModel:ViewModel() {
+@HiltViewModel
+class LogonViewModel @Inject constructor(val repository: Repository):ViewModel() {
     fun login(context: Context,username:String, password:String)
 
     {
         viewModelScope.launch {
-       val user= Repository.getIstance(context)?.login(username,password)
+       val user= repository.login(username,password)
             if(user!=null)
             {
                 userData.value=user!!
@@ -28,7 +31,7 @@ class LogonViewModel:ViewModel() {
     {
         viewModelScope.launch {
             if(!username.isNullOrEmpty()&&!password.isNullOrEmpty()) {
-                Repository.getIstance(context)?.registrati(username, password)?.let {
+               repository.registrati(username, password)?.let {
                     if (it) {
                         registrationData.value = "Registrazione avvenuta"
                     } else

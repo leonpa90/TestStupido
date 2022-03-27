@@ -9,9 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.teststupido.data.repository.Repository
 import com.example.teststupido.databinding.ResponseFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-lateinit var bind:ResponseFragmentBinding
+@AndroidEntryPoint
 class ResponseFragment: Fragment() {
+
+    lateinit var bind:ResponseFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

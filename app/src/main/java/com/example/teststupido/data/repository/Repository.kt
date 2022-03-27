@@ -11,20 +11,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class Repository(context: Context) {
-    companion object{
-        //singleton
-        var repository:Repository? =null
-        fun getIstance(context: Context):Repository?{
-            if(repository==null){
-                repository = Repository(context)
-            }
-            return repository
-        }
-    }
-    val baseData:BaseData = BaseData.getDatabase(context)
-    val apiData:ApiService=RetrofitClient.apiServices
+class Repository @Inject constructor(val apiService: ApiService, val baseData: BaseData) {
+
+
+
 
     suspend fun login(username:String, password:String):UserEntity?
     {
@@ -80,7 +72,7 @@ class Repository(context: Context) {
                 emit(Pianeta(pianeta))
                 return@flow
             }
-            val p = apiData.getPianeti(id)
+            val p = apiService.getPianeti(id)
             if(pianeta.isNullOrEmpty())
             {
                 baseData.userDao().getUtenteUser(userid)?.let {
